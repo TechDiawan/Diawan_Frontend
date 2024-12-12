@@ -8,6 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/960e79590a.js" crossorigin="anonymous"></script>
 </head>
 <body class="font-sans antialiased">
     <!-- Top fixed menu bar -->
@@ -20,15 +21,15 @@
             </button>
             <div class="hidden lg:flex space-x-4">
                 <!-- Add your main menu items here -->
-                <a href="#" class="text-gray-700 hover:text-gray-900">Home</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Features</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">How It Works</a>
+                <a href="#" class="text-gray-700 hover:underline text-gray-900">Home</a>
+                <a href="#" class="text-gray-700 hover:underline text-gray-900">Features</a>
+                <a href="#" class="text-gray-700 hover:underline text-gray-900">How It Works</a>
             </div>
             <div class="flex-1 text-center">
-                <img src="{{ asset('images/diawan-logo.png') }}" alt="Diawan Logo" class="h-8 mx-auto">
+                <img src="{{ asset('images/diawan_horizontal_with_text.png') }}" alt="Diawan Logo" class="h-8 mx-auto">
             </div>
             <div class="flex space-x-4">
-                <a href="#" class="text-gray-700 hover:text-gray-900">Sign In</a>
+                <a href="#" class="bg-yellow-200 text-gray-700 px-4 py-2 rounded hover:bg-yellow-300">Sign In</a>
                 <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Sign Up</a>
             </div>
         </div>
@@ -36,43 +37,29 @@
 
     <!-- Hero Section -->
     <section class="pt-20 bg-gradient-to-r from-blue-500 to-purple-600 text-white min-h-screen flex items-center">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-8 lg:mb-0">
-                    <h1 class="text-4xl lg:text-6xl font-bold mb-4 animate-fade-in">Persona: Your Single Identity Across Diawan</h1>
-                    <p class="text-xl mb-8 animate-fade-in">Simplify your experience with a unified identity to manage your activities, billing, and more within Diawan.</p>
-                    <a href="#" class="bg-white text-blue-500 px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-100 transition duration-300 animate-pulse">Create Your Persona Now</a>
-                </div>
-                <div class="lg:w-1/2">
-                    <div class="relative">
-                        <!-- Replace with your actual illustration or animation -->
-                        <img src="{{ asset('images/persona-dashboard.png') }}" alt="Persona Dashboard" class="w-full rounded-lg shadow-2xl">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Hero content here -->
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-gray-100">
+    <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Persona?</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
             <div class="flex flex-wrap -mx-4">
                 @php
                 $features = [
-                    ['icon' => 'key', 'title' => 'Single Sign-On (SSO)', 'description' => 'Seamlessly access all Diawan services with one login.'],
-                    ['icon' => 'user', 'title' => 'Profile Management', 'description' => 'Update and customize your personal and business details.'],
-                    ['icon' => 'credit-card', 'title' => 'Billing and Payments', 'description' => 'Handle transactions effortlessly.'],
-                    ['icon' => 'chart-bar', 'title' => 'Activity Tracking', 'description' => 'Monitor your usage and interactions within Diawan.'],
-                    ['icon' => 'lock', 'title' => 'Secure and Private', 'description' => 'Your data is encrypted and protected.'],
+                    ['icon' => 'fas fa-key', 'title' => 'Single Sign-On (SSO)', 'description' => 'Seamlessly access all Diawan services with one login.'],
+                    ['icon' => 'fas fa-user', 'title' => 'Profile Management', 'description' => 'Update and customize your personal and business details.'],
+                    ['icon' => 'fas fa-credit-card', 'title' => 'Billing and Payments', 'description' => 'Handle transactions effortlessly.'],
+                    ['icon' => 'fas fa-chart-bar', 'title' => 'Activity Tracking', 'description' => 'Monitor your usage and interactions within Diawan.'],
+                    ['icon' => 'fas fa-lock', 'title' => 'Secure and Private', 'description' => 'Your data is encrypted and protected.'],
                 ];
                 @endphp
 
                 @foreach ($features as $feature)
-                <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-                    <div class="bg-white rounded-lg shadow-md p-6 h-full transition duration-300 hover:shadow-lg">
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="text-center">
                         <div class="text-4xl text-blue-500 mb-4">
-                            <i class="fas fa-{{ $feature['icon'] }}"></i>
+                            <i class="{{ $feature['icon'] }}"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-2">{{ $feature['title'] }}</h3>
                         <p class="text-gray-600">{{ $feature['description'] }}</p>
