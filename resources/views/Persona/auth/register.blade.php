@@ -110,11 +110,11 @@
                         <div class="relative w-full max-w-lg">
                             <!-- Logo -->
                             <div class="mb-8">
-                                <img src="{{ asset('images/diawan-logo.png') }}" alt="Diawan Logo" class="h-8">
+                                <img src="{{ asset('images/diawan_horizontal_with_text.png') }}" alt="Diawan Logo" class="h-8">
                             </div>
                             
                             <!-- Illustration -->
-                            <img src="{{ asset('images/registration-illustration.svg') }}" 
+                            <img src="{{ asset('images/illustration/register.jpg') }}" 
                                 alt="Registration Illustration" 
                                 class="w-full"
                                 onerror="this.src='https://via.placeholder.com/500x400?text=Welcome+to+Persona'">
