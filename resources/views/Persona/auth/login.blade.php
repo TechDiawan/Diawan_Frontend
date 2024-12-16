@@ -23,7 +23,7 @@
                         
                         <!-- Illustration -->
                         <div class="flex-1 flex items-center justify-center">
-                            <img src="{{ asset('images/illustration/login.jpg') }}" 
+                            <img src="{{ asset('images/illustration/signin.jpg') }}" 
                                 alt="Login Illustration" 
                                 class="w-full max-w-lg"
                                 onerror="this.src='https://via.placeholder.com/500x400?text=Welcome+to+Persona'">
@@ -33,7 +33,7 @@
 
                 <!-- Right Column - Form -->
                 <div class="p-8 lg:p-12">
-                    <!-- Language Selector -->
+                    <!-- Language Selector
                     <div class="flex justify-end mb-12">
                         <button class="inline-flex items-center px-4 py-2 rounded-lg bg-gray-100 text-sm text-gray-600">
                             <span class="mr-2">🌐</span>
@@ -42,7 +42,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
-                    </div>
+                    </div> -->
 
                     <!-- Login Form -->
                     <div class="mb-8">
@@ -90,13 +90,18 @@
                             </div>
                         </div>
 
+                        <!-- Forgot Password Link -->
+                        <div class="mb-4 text-right">
+                            <a href="{{ route('persona.auth.forgotpass') }}" class="text-blue-500 hover:underline">Forgot Password?</a>
+                        </div>
+
                         <!-- Sign In Button -->
                         <button type="submit" 
                             class="w-full bg-[#4263EB] text-white py-3 rounded-lg hover:bg-[#3451C6] transition duration-300">
                             SIGN IN
                         </button>
 
-                        <!-- Privacy Policy -->
+                        <!-- Privacy Policy
                         <p class="text-xs text-gray-500 mt-4">
                             By clicking the Sign In Button, you therefore agree to the 
                             <a href="#" class="text-[#4263EB] hover:underline">Privacy Policy</a>.
@@ -104,6 +109,7 @@
                             For more information, read about our privacy 
                             <a href="#" class="text-[#4263EB] hover:underline">here</a>.
                         </p>
+                        -->
                     </form>
                 </div>
             </div>

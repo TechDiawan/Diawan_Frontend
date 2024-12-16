@@ -8,6 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 </head>
 <body class="font-sans antialiased bg-[#4263EB]">
     <div class="min-h-screen flex items-center justify-center p-4">
@@ -15,7 +16,7 @@
             <div class="grid md:grid-cols-2">
                 <!-- Left Column - Form -->
                 <div class="p-8 lg:p-12">
-                    <!-- Language Selector -->
+                    <!-- Language Selector
                     <div class="mb-8">
                         <button class="inline-flex items-center px-4 py-2 rounded-lg bg-gray-100 text-sm text-gray-600">
                             <span class="mr-2">🌐</span>
@@ -24,83 +25,65 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
-                    </div>
-
-                    <!-- Registration Form -->
-                    <div class="mb-8">
-                        <h3 class="text-[#6B7280] text-sm font-medium mb-2">REGISTER NOW</h3>
-                        <h1 class="text-4xl font-bold text-[#1E1B4B] mb-4">Sign Up For Free.</h1>
-                        <p class="text-[#6B7280]">
-                            Already have an account? 
-                            <a href="{{ route('persona.auth.login') }}" class="text-[#4263EB] hover:underline">Sign In</a>
-                        </p>
-                    </div>
-
-                    <form action="{{ route('persona.auth.register') }}" method="POST" class="space-y-6">
+                    </div> -->
+                    <h2 class="text-2xl font-bold mb-6">Create your account</h2>
+                    <form id="register-form" action="{{ route('persona.auth.handleRegister') }}" method="POST">
                         @csrf
-                        
-                        <!-- Username Field -->
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-[#6B7280] mb-2">Username</label>
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700">Name</label>
+                            <input type="text" name="name" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            @error('name')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700">Email</label>
+                            <input type="email" name="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            @error('email')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="block text-gray-700">Password</label>
                             <div class="relative">
-                                <input type="text" name="name" id="name" 
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4263EB] focus:border-transparent"
-                                    required>
+                                <input type="password" name="password" id="password" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </span>
+                                <div id="password-strength" class="mt-2 text-sm"></div>
+                            </div>
+                            @error('password')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="password_confirmation" class="block text-gray-700">Confirm Password</label>
+                            <div class="relative">
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
                                 </span>
                             </div>
+                            @error('password_confirmation')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <!-- Email Field -->
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-[#6B7280] mb-2">E-Mail</label>
-                            <div class="relative">
-                                <input type="email" name="email" id="email" 
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4263EB] focus:border-transparent"
-                                    required>
-                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                </span>
-                            </div>
+                        <div class="mb-4">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="terms" class="form-checkbox" required>
+                                <span class="ml-2">I agree to the <a href="#" class="text-blue-500 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a></span>
+                            </label>
                         </div>
-
-                        <!-- Password Field -->
-                        <div>
-                            <label for="password" class="block text-sm font-medium text-[#6B7280] mb-2">Password</label>
-                            <div class="relative">
-                                <input type="password" name="password" id="password" 
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4263EB] focus:border-transparent"
-                                    required>
-                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                    </svg>
-                                </span>
-                            </div>
+                        <div class="mb-4">
+                            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Register</button>
                         </div>
-
-                        <!-- Sign Up Button -->
-                        <button type="submit" 
-                            class="w-full bg-[#4263EB] text-white py-3 rounded-lg hover:bg-[#3451C6] transition duration-300">
-                            SIGN UP
-                        </button>
-
-                        <!-- Privacy Policy -->
-                        <p class="text-xs text-gray-500 mt-4">
-                            By clicking the Sign Up Button, you agree to the 
-                            <a href="#" class="text-[#4263EB] hover:underline">Privacy Policy</a>.
-                            <br>
-                            For more information, read about our privacy 
-                            <a href="#" class="text-[#4263EB] hover:underline">here</a>.
-                        </p>
+                        <div class="text-center">
+                            <a href="{{ route('persona.auth.login') }}" class="text-blue-500 hover:underline">Already have an account? Login</a>
+                        </div>
                     </form>
                 </div>
 
@@ -114,7 +97,7 @@
                             </div>
                             
                             <!-- Illustration -->
-                            <img src="{{ asset('images/illustration/register.jpg') }}" 
+                            <img src="{{ asset('images/illustration/signup.jpg') }}" 
                                 alt="Registration Illustration" 
                                 class="w-full"
                                 onerror="this.src='https://via.placeholder.com/500x400?text=Welcome+to+Persona'">
@@ -127,20 +110,45 @@
 
     <script>
         $(document).ready(function() {
-            // Password visibility toggle
-            $('.toggle-password').click(function() {
-                const input = $(this).closest('.relative').find('input');
-                const type = input.attr('type') === 'password' ? 'text' : 'password';
-                input.attr('type', type);
-                $(this).find('svg').toggle();
+            $('#password').on('input', function() {
+                var password = $(this).val();
+                var result = zxcvbn(password);
+                var strengthText;
+                var strengthColor;
+
+                switch (result.score) {
+                    case 0:
+                        strengthText = 'Very Weak';
+                        strengthColor = 'text-red-500';
+                        break;
+                    case 1:
+                        strengthText = 'Weak';
+                        strengthColor = 'text-orange-500';
+                        break;
+                    case 2:
+                        strengthText = 'Fair';
+                        strengthColor = 'text-yellow-500';
+                        break;
+                    case 3:
+                        strengthText = 'Good';
+                        strengthColor = 'text-green-500';
+                        break;
+                    case 4:
+                        strengthText = 'Strong';
+                        strengthColor = 'text-blue-500';
+                        break;
+                }
+
+                $('#password-strength').text('Password Strength: ' + strengthText).removeClass().addClass(strengthColor);
             });
 
-            // Form validation
-            $('form').submit(function(event) {
-                const password = $('#password').val();
-                if (password.length < 8) {
-                    event.preventDefault();
-                    alert('Password must be at least 8 characters long.');
+            $('#register-form').on('submit', function(e) {
+                var password = $('#password').val();
+                var passwordConfirmation = $('#password_confirmation').val();
+
+                if (password !== passwordConfirmation) {
+                    e.preventDefault();
+                    alert('Passwords do not match.');
                 }
             });
         });
