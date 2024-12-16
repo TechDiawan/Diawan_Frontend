@@ -13,5 +13,5 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
     Route::get('/auth/login', 'PersonaAuthController@login')->name('persona.auth.login');
     Route::get('/auth/register', 'PersonaAuthController@register')->name('persona.auth.register');
     Route::post('/auth/register', 'PersonaAuthController@handleRegister')->name('persona.auth.handleRegister');
-    Route::get('/auth/foorgotpass', 'PersonaAuthController@forgotpass')->name('persona.auth.forgotpass');
+    Route::get('/auth/forgotpass', 'PersonaAuthController@forgotpass')->name('persona.auth.forgotpass');
 });
