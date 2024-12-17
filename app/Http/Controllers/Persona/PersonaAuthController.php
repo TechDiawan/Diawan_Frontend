@@ -64,4 +64,49 @@ class PersonaAuthController extends Controller
 
         return redirect()->route('persona.home');
     }
+
+    /**
+     * Show the reset password form.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function resetpass(Request $request)
+    {
+        $token = $request->query('token');
+        return view('persona.auth.resetpass', ['token' => $token]);
+    }
+
+    /**
+     * Handle the reset password form submission.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleResetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8|confirmed',
+            'token' => 'required|string',
+        ]);
+
+        // Find the user by email
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'No user found with this email address.']);
+        }
+
+        // Here you should verify the token, this is just a placeholder
+        if ($request->token !== 'valid-token') {
+            return back()->withErrors(['token' => 'Invalid or expired token.']);
+        }
+
+        // Update the user's password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('persona.auth.login')->with('status', 'Password has been reset.');
+    }
 }

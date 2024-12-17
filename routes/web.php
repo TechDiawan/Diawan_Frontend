@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,4 +15,8 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
     Route::get('/auth/register', 'PersonaAuthController@register')->name('persona.auth.register');
     Route::post('/auth/register', 'PersonaAuthController@handleRegister')->name('persona.auth.handleRegister');
     Route::get('/auth/forgotpass', 'PersonaAuthController@forgotpass')->name('persona.auth.forgotpass');
+    Route::get('/auth/resetpass', 'PersonaAuthController@resetpass')->name('persona.auth.resetpass');
+    Route::post('/auth/resetpass', 'PersonaAuthController@handleResetPassword')->name('persona.auth.handleResetPassword');
 });
+
+Route::get('/notifications/{type?}', [NotificationController::class, 'index']);
