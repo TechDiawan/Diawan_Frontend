@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Persona\MyProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,9 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
     Route::get('/auth/forgotpass', 'PersonaAuthController@forgotpass')->name('persona.auth.forgotpass');
     Route::get('/auth/resetpass', 'PersonaAuthController@resetpass')->name('persona.auth.resetpass');
     Route::post('/auth/resetpass', 'PersonaAuthController@handleResetPassword')->name('persona.auth.handleResetPassword');
+
+    // Route for My Profile page
+    Route::get('/myprofile', [MyProfileController::class, 'index'])->name('persona.myprofile');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);

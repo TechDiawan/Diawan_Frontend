@@ -19,7 +19,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
-            <div class="hidden lg:flex space-x-4">
+            <div class="hidden lg:flex space-x-4 items-bottom">
+                <a class="text-xl font-bold">Persona</a>
+                
                 <!-- Add your main menu items here -->
                 <a href="{{ url('/persona') }}" class="text-gray-700 hover:underline text-gray-900">Home</a>
                 <a href="{{ url('/persona/#features_section') }}" class="text-gray-700 hover:underline text-gray-900">Features</a>
