@@ -82,7 +82,7 @@
                             <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Register</button>
                         </div>
                         <div class="text-center">
-                            <a href="{{ route('persona.auth.login') }}" class="text-blue-500 hover:underline">Already have an account? Login</a>
+                            <a href="{{ route('persona.auth.login') }}" class="text-blue-500 hover:underline">Already have an account? Sign In</a>
                         </div>
                     </form>
                 </div>

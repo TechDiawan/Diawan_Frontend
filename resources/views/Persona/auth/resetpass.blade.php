@@ -13,7 +13,11 @@
             <div class="grid md:grid-cols-2">
                 <!-- Left Column - Form -->
                 <div class="p-8 lg:p-12">
-                    <h2 class="text-2xl font-bold mb-6">Reset Your Password</h2>
+                    <h2 class="text-4xl font-bold mb-6">Reset Your Password</h2>
+                    <p class="text-[#6B7280] mb-8">
+                            Remember your password? 
+                            <a href="{{ route('persona.auth.login') }}" class="text-[#4263EB] hover:underline">Sign In</a>
+                    </p>
                     <form action="{{ route('persona.auth.handleResetPassword') }}" method="POST">
                         @csrf
                         <input type="hidden" name="token" value="{{ $token }}">
