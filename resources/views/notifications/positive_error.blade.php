@@ -9,18 +9,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .bg-diawan-logo {
+            position: relative;
+        }
+        .bg-diawan-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url('{{ asset('images/diawan_logo_only.png') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: rgba(255, 255, 255, 0.7); /* 30% transparency */
+            opacity: 0.3; /* 30% transparency */
         }
     </style>
 </head>
 <body class="font-sans antialiased bg-[#4263EB]">
     <div class="min-h-screen flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-xl w-full max-w-6xl overflow-hidden bg-diawan-logo">
-            <div class="p-8 lg:p-12 text-center max-h-screen overflow-y-auto">
+        <div class="bg-white rounded-3xl shadow-xl w-full max-w-6xl overflow-hidden">
+            <div class="p-8 lg:p-12 text-center max-h-screen overflow-y-auto bg-diawan-logo">
                 <h1 class="text-2xl font-bold mb-4">{{ $errorName }}</h1>
                 <p class="text-lg mb-4">{{ $message }}</p>
                 <img src="{{ asset($errorImage) }}" alt="{{ $errorName }}" class="mb-4 max-w-xs mx-auto h-auto max-h-64">
