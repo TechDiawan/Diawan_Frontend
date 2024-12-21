@@ -16,13 +16,13 @@
 
     <div class="flex pt-16">
         <!-- Left Sidebar -->
-        <div class="bg-gray-300 bg-opacity-30">
+        <div id="leftSidebarContainer" class="bg-gray-300 bg-opacity-30 transition-all duration-300 ease-in-out collapsed">
             @includeIf('layouts.partials.leftsidebar')
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col min-h-screen bg-gray-100 bg-opacity-10">
-            <main class="flex-1 p-4">
+        <div id="mainContent" class="flex-1 flex flex-col min-h-screen bg-gray-100 bg-opacity-10 transition-all duration-300 ease-in-out">
+            <main class="flex-1 p-1">
                 @yield('content')
             </main>
 
@@ -37,5 +37,30 @@
             @includeIf('layouts.partials.rightsidebar')
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var leftSidebar = document.getElementById('leftSidebarContainer');
+            var mainContent = document.getElementById('mainContent');
+            var isCollapsed = leftSidebar.classList.contains('collapsed');
+
+            function adjustMainContentWidth() {
+                if (isCollapsed) {
+                    mainContent.style.marginLeft = '50px';
+                } else {
+                    mainContent.style.marginLeft = 'calc(16.6667% + 50px)';
+                }
+            }
+
+            adjustMainContentWidth();
+
+            document.getElementById('burgerMenuButton').addEventListener('click', function () {
+                isCollapsed = !isCollapsed;
+                leftSidebar.classList.toggle('collapsed');
+                leftSidebar.classList.toggle('expanded');
+                adjustMainContentWidth();
+            });
+        });
+    </script>
 </body>
 </html>
