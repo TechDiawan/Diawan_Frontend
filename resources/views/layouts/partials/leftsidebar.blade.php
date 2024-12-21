@@ -1,23 +1,24 @@
+<style>
+    #leftSidebar.collapsed {
+        width: 50px; /* 50px */
+    }
+    #leftSidebar.expanded {
+        width: 16.6667%; /* Approximately 1/6 of the total screen width */
+    }
+    #leftSidebar.collapsed .menu-label {
+        display: none;
+    }
+    .active-menu {
+        background-color: #36539f;
+        color: #f7ec03; /* Text color for active menu */
+    }
+    .active-menu:hover {
+        color: black; /* Text color on hover */
+    }
+</style>
+
 <!-- resources/views/layouts/partials/leftsidebar.blade.php -->
-<aside id="leftSidebar" class="bg-gray-300 w-12 fixed top-0 left-0 bottom-0 pt-16 transform transition-all duration-300 ease-in-out collapsed">
-    <style>
-        #leftSidebar.collapsed {
-            width: 50px; /* 50px */
-        }
-        #leftSidebar.expanded {
-            width: 16.6667%; /* Approximately 1/6 of the total screen width */
-        }
-        #leftSidebar.collapsed .menu-label {
-            display: none;
-        }
-        .active-menu {
-            background-color: #36539f;
-            color: #f7ec03; /* Text color for active menu */
-        }
-        .active-menu:hover {
-            color: black; /* Text color on hover */
-        }
-    </style>
+<aside id="leftSidebar" class="bg-gray-300 fixed top-0 left-0 bottom-0 pt-16 transform transition-all duration-300 ease-in-out collapsed">
     <div class="p-1">
         <!-- Left sidebar content goes here -->
         <a href="{{ route('persona.myprofile') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.myprofile') ? 'active-menu' : '' }}">

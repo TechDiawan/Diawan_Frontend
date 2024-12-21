@@ -57,9 +57,28 @@
         var avatarDropdownButton = document.getElementById('avatarDropdownButton');
         var avatarDropdownMenu = document.getElementById('avatarDropdownMenu');
         var burgerMenuButton = document.getElementById('burgerMenuButton');
-        var leftSidebar = document.getElementById('leftSidebarContainer');
+        var leftSidebar = document.getElementById('leftSidebar');
+//        var leftSidebarContainer = document.getElementById('leftSidebarContainer');
         var mainContent = document.getElementById('mainContent');
-        var isCollapsed = leftSidebar.classList.contains('collapsed');
+
+        burgerMenuButton.addEventListener('click', function () {
+            var isCollapsed = leftSidebar.classList.contains('collapsed');
+            if (isCollapsed) {
+                leftSidebar.classList.remove('collapsed');
+                leftSidebar.classList.add('expanded');
+                // leftSidebarContainer.classList.remove('collapsed');
+                // leftSidebarContainer.classList.add('expanded');
+                mainContent.style.marginLeft = 'calc(16.6667% + 50px)';
+            } else {
+                mainContent.style.marginLeft = '50px';
+                leftSidebar.classList.remove('expanded');
+                leftSidebar.classList.add('collapsed');
+                // leftSidebarContainer.classList.remove('expanded');
+                // leftSidebarContainer.classList.add('collapsed');
+                mainContent.style.marginLeft = '50px';
+            }
+            //adjustMainContentWidth(); // Ensure this is called after the state change
+        });
 
         avatarDropdownButton.addEventListener('click', function () {
             avatarDropdownMenu.classList.toggle('hidden');
@@ -69,23 +88,6 @@
             if (!avatarDropdownButton.contains(event.target) && !avatarDropdownMenu.contains(event.target)) {
                 avatarDropdownMenu.classList.add('hidden');
             }
-        });
-
-        function adjustMainContentWidth() {
-            if (isCollapsed) {
-                mainContent.style.marginLeft = '50px';
-            } else {
-                mainContent.style.marginLeft = 'calc(16.6667% + 50px)';
-            }
-        }
-
-        adjustMainContentWidth();
-
-        burgerMenuButton.addEventListener('click', function () {
-            isCollapsed = !isCollapsed;
-            leftSidebar.classList.toggle('collapsed');
-            leftSidebar.classList.toggle('expanded');
-            adjustMainContentWidth();
         });
 
         // Ensure jQuery is available before using it
