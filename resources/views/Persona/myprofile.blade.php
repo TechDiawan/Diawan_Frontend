@@ -14,17 +14,14 @@
                             @php
                                 $shareToken = Auth::user()->share_token ?? '';
                             @endphp
-                            <a href="{{ $shareToken ? route('persona.e-card', ['token' => $shareToken]) : '#' }}" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer group">
+                            <a href="{{ $shareToken ? route('persona.e-card', ['token' => $shareToken]) : '#' }}" title="Share" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer">
                                 <i class="fas fa-share-nodes h-6 w-6"></i>
-                                <span class="tooltip-text bg-gray-800 text-white text-xs rounded py-1 px-4 right-0 bottom-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">Share</span>
                             </a>
-                            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer group">
+                            <a href="#" title="Flip" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer">
                                 <i class="fas fa-repeat h-6 w-6"></i>
-                                <span class="tooltip-text bg-gray-800 text-white text-xs rounded py-1 px-4 right-0 bottom-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">Flip</span>
                             </a>
-                            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer group">
+                            <a href="#" title="Edit" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer">
                                 <i class="fas fa-pencil-alt h-6 w-6"></i>
-                                <span class="tooltip-text bg-gray-800 text-white text-xs rounded py-1 px-4 right-0 bottom-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">Edit</span>
                             </a>
                         </div>
                         <div class="relative flex justify-center mb-4">
@@ -38,6 +35,7 @@
                         <div class="mb-4">
                             <h3 class="text-lg font-bold">John Doe</h3>
                             <p class="text-gray-600">johndoe@example.com</p>
+                            <p class="text-gray-600">+453678456347</p>
                         </div>
                     </div>
                 </div>
@@ -100,19 +98,21 @@
 
             const shareToken = "{{ Auth::user()->share_token ?? '' }}";
             const shareIcon = document.querySelector('.fa-share-nodes');
-            shareIcon.addEventListener('click', function (event) {
-                event.preventDefault();
-                if (shareToken) {
-                    const url = "{{ route('persona.e-card', ['token' => '__TOKEN__']) }}".replace('__TOKEN__', shareToken);
-                    navigator.clipboard.writeText(url).then(function () {
-                        alert('URL copied to clipboard');
-                    }, function (err) {
-                        console.error('Could not copy text: ', err);
-                    });
-                } else {
-                    alert('No share token available');
-                }
-            });
+            if (shareIcon) {
+                shareIcon.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (shareToken) {
+                        const url = "{{ route('persona.e-card', ['token' => '__TOKEN__']) }}".replace('__TOKEN__', shareToken);
+                        navigator.clipboard.writeText(url).then(function () {
+                            alert('URL copied to clipboard');
+                        }, function (err) {
+                            console.error('Could not copy text: ', err);
+                        });
+                    } else {
+                        alert('No share token available');
+                    }
+                });
+            }
         });
     </script>
 @endsection
