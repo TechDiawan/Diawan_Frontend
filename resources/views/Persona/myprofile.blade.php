@@ -10,12 +10,20 @@
             <div class="w-full md:w-1/3 px-4 mb-8 md:mb-0">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="p-4 rounded-lg text-center">
-                        <div class="flex justify-center mb-4">
-                            <img src="{{ asset('images/profile_pics/default.jpg') }}" alt="User Avatar" class="h-36 w-36 rounded-full">
+                        <div class="relative flex justify-center mb-4">
+                            <img src="{{ asset('images/profile_pics/default.jpg') }}" alt="User Avatar" class="h-36 w-36 rounded-full transition duration-300 ease-in-out">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition duration-300 ease-in-out rounded-full h-36 w-36" style="left: 50%; transform: translateX(-50%);">
+                                <svg class="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 13.5V17h3.5l9.5-9.5a2.121 2.121 0 00-3-3L9 13.5z"></path>
+                                </svg>
+                            </div>
                         </div>
                         <div class="mb-4">
                             <h3 class="text-lg font-bold">John Doe</h3>
                             <p class="text-gray-600">johndoe@example.com</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <i class="fas fa-link h-6 w-6 text-gray-600 hover:text-blue-600 cursor-pointer transition duration-300 ease-in-out"></i>
                         </div>
                     </div>
                 </div>
