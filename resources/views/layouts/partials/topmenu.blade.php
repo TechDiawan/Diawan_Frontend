@@ -1,4 +1,5 @@
 <!-- resources/views/layouts/partials/topmenu.blade.php -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
     <div class="px-4 py-2 flex justify-between items-center relative">
         <!-- Left Section -->
@@ -38,7 +39,7 @@
                 <!-- Dropdown Menu -->
                 <div id="avatarDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5">
                     <a href="{{ route('persona.myprofile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                    <button id="logout-btn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
                 </div>
             </div>
         </div>
@@ -47,17 +48,56 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var avatarDropdownButton = document.getElementById('avatarDropdownButton');
-        var avatarDropdownMenu = document.getElementById('avatarDropdownMenu');
+    var avatarDropdownButton = document.getElementById('avatarDropdownButton');
+    var avatarDropdownMenu = document.getElementById('avatarDropdownMenu');
 
-        avatarDropdownButton.addEventListener('click', function () {
-            avatarDropdownMenu.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', function (event) {
-            if (!avatarDropdownButton.contains(event.target) && !avatarDropdownMenu.contains(event.target)) {
-                avatarDropdownMenu.classList.add('hidden');
-            }
-        });
+    // Toggle avatar dropdown menu
+    avatarDropdownButton.addEventListener('click', function () {
+        avatarDropdownMenu.classList.toggle('hidden');
     });
+
+    // Close dropdown menu if clicked outside
+    document.addEventListener('click', function (event) {
+        if (!avatarDropdownButton.contains(event.target) && !avatarDropdownMenu.contains(event.target)) {
+            avatarDropdownMenu.classList.add('hidden');
+        }
+    });
+
+    // Ensure jQuery is available before using it
+    if (typeof $ !== 'undefined') {
+        $('#logout-btn').on('click', function (e) {
+            e.preventDefault();
+
+            // Get the token from localStorage
+            let token = localStorage.getItem('token');
+
+            if (!token) {
+                alert('You are not logged in.');
+                return;
+            }
+
+            // Make API call to logout
+            $.ajax({
+                url: "http://127.0.0.1:8000/api/logout", // Replace with your API endpoint
+                type: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                success: function (response) {
+                    // Clear the token from localStorage
+                    localStorage.removeItem('token');
+
+                    // Redirect to the login page
+                    window.location.href = "{{ route('persona.auth.login') }}";
+                },
+                error: function (xhr) {
+                    alert('Error during logout. Please try again.');
+                }
+            });
+        });
+    } else {
+        console.error("jQuery is not loaded. Please include jQuery before this script.");
+    }
+});
+
 </script>
