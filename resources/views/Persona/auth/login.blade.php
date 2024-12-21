@@ -97,6 +97,7 @@
 
                         <!-- Sign In Button -->
                         <button type="submit" 
+                            id="login-btn"
                             class="w-full bg-[#4263EB] text-white py-3 rounded-lg hover:bg-[#3451C6] transition duration-300">
                             SIGN IN
                         </button>
@@ -135,6 +136,47 @@
                     event.preventDefault();
                     alert('Please fill in all fields.');
                 }
+            });
+
+            $('#login-btn').on('click', function (e) {
+                e.preventDefault();
+
+                // Clear error messages
+                $('.text-red-500').text('');
+
+                // Get form data
+                let formData = {
+                    user_email: $('#email').val(),
+                    user_password: $('#password').val(),
+                };
+
+                // Make API call
+                $.ajax({
+                    url: "http://127.0.0.1:8000/api/login", // Replace with your API endpoint
+                    type: "POST",
+                    data: JSON.stringify(formData), // Send data as JSON
+                    contentType: "application/json", // Set the content type
+                    success: function (response) {
+                        // Store the JWT token in localStorage
+                        localStorage.setItem('token', response.access_token);
+
+                        // Redirect to profile or other page
+                        window.location.href = "{{ route('persona.myprofile') }}";
+                    },
+                    error: function (xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            // Display validation errors
+                            $.each(xhr.responseJSON.errors, function (key, value) {
+                                $(`#error-${key}`).text(value[0]);
+                            });
+                        } else if (xhr.responseJSON && xhr.responseJSON.error) {
+                            // Display general error message
+                            alert(xhr.responseJSON.error);
+                        } else {
+                            alert('An unexpected error occurred. Please try again.');
+                        }
+                    }
+                });
             });
         });
     </script>

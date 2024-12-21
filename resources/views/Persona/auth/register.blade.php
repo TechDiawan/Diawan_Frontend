@@ -79,7 +79,7 @@
                             </label>
                         </div>
                         <div class="mb-4">
-                            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Register</button>
+                            <button type="submit" id="register-btn" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Register</button>
                         </div>
                         <div class="text-center">
                             <a href="{{ route('persona.auth.login') }}" class="text-blue-500 hover:underline">Already have an account? Sign In</a>
@@ -150,6 +150,71 @@
                     e.preventDefault();
                     alert('Passwords do not match.');
                 }
+            });
+
+            $('#register-btn').on('click', function (e) {
+                e.preventDefault();
+
+                // Clear error messages
+                $('.text-red-500').text('');
+
+                // Get form data
+                let formData = {
+                    user_name: $('#name').val(),
+                    user_email: $('#email').val(),
+                    user_password: $('#password').val(),
+                    user_password_confirmation: $('#password_confirmation').val(),
+                    terms: $('input[name="terms"]').is(':checked'),
+                };
+
+                // Validate terms checkbox locally before making the API call
+                if (!formData.terms) {
+                    alert('You must agree to the terms and conditions.');
+                    return;
+                }
+
+                // Make API call for registration
+                $.ajax({
+                    url: "http://127.0.0.1:8000/api/register", // Replace with your API endpoint
+                    type: "POST",
+                    contentType: "application/json", // Ensure JSON content type
+                    data: JSON.stringify(formData), // Convert data to JSON string
+                    success: function (response) {
+                        // If registration is successful, login the user automatically
+                        let loginData = {
+                            user_email: formData.user_email,
+                            user_password: formData.user_password,
+                        };
+
+                        $.ajax({
+                            url: "http://127.0.0.1:8000/api/login", // Login API endpoint
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(loginData),
+                            success: function (loginResponse) {
+                                // Store the token in localStorage
+                                localStorage.setItem('token', loginResponse.access_token);
+
+                                // Redirect to the profile page or desired location
+                                window.location.href = "{{ route('persona.myprofile') }}";
+                            },
+                            error: function (xhr) {
+                                alert('Registration successful, but failed to log in. Please log in manually.');
+                                window.location.href = "{{ route('persona.auth.login') }}";
+                            }
+                        });
+                    },
+                    error: function (xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            // Display validation errors
+                            $.each(xhr.responseJSON.errors, function (key, value) {
+                                $(`#error-${key}`).text(value[0]);
+                            });
+                        } else {
+                            alert('An error occurred. Please try again.');
+                        }
+                    }
+                });
             });
         });
     </script>
