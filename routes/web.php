@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Persona\MyProfileController;
+use App\Http\Controllers\Persona\PersonaAuthController;
 use App\Http\Controllers\Persona\CompetencyController;
+use App\Http\Controllers\Persona\ECardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +27,9 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
 
     // Route for Competency page
     Route::get('/competency', [CompetencyController::class, 'index'])->name('persona.competency');
+
+    // Route for E-Card page
+    Route::get('/e-card', [ECardController::class, 'index'])->name('persona.e-card');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);
