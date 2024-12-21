@@ -43,6 +43,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             var leftSidebar = document.getElementById('leftSidebarContainer');
             var mainContent = document.getElementById('mainContent');
+            var burgerMenuButton = document.getElementById('burgerMenuButton');
             var isCollapsed = leftSidebar.classList.contains('collapsed');
 
             function adjustMainContentWidth() {
@@ -55,7 +56,7 @@
 
             adjustMainContentWidth();
 
-            document.getElementById('burgerMenuButton').addEventListener('click', function () {
+            burgerMenuButton.addEventListener('click', function () {
                 isCollapsed = !isCollapsed;
                 leftSidebar.classList.toggle('collapsed');
                 leftSidebar.classList.toggle('expanded');

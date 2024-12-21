@@ -54,16 +54,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    var avatarDropdownButton = document.getElementById('avatarDropdownButton');
-    var avatarDropdownMenu = document.getElementById('avatarDropdownMenu');
-
-    // Toggle avatar dropdown menu
-    avatarDropdownButton.addEventListener('click', function () {
-        avatarDropdownMenu.classList.toggle('hidden');
         var avatarDropdownButton = document.getElementById('avatarDropdownButton');
         var avatarDropdownMenu = document.getElementById('avatarDropdownMenu');
         var burgerMenuButton = document.getElementById('burgerMenuButton');
-        var leftSidebar = document.getElementById('leftSidebar');
+        var leftSidebar = document.getElementById('leftSidebarContainer');
         var mainContent = document.getElementById('mainContent');
         var isCollapsed = leftSidebar.classList.contains('collapsed');
 
@@ -93,50 +87,41 @@
             leftSidebar.classList.toggle('expanded');
             adjustMainContentWidth();
         });
-    });
 
-    // Close dropdown menu if clicked outside
-    document.addEventListener('click', function (event) {
-        if (!avatarDropdownButton.contains(event.target) && !avatarDropdownMenu.contains(event.target)) {
-            avatarDropdownMenu.classList.add('hidden');
+        // Ensure jQuery is available before using it
+        if (typeof $ !== 'undefined') {
+            $('#logout-btn').on('click', function (e) {
+                e.preventDefault();
+
+                // Get the token from localStorage
+                let token = localStorage.getItem('token');
+
+                if (!token) {
+                    alert('You are not logged in.');
+                    return;
+                }
+
+                // Make API call to logout
+                $.ajax({
+                    url: "http://127.0.0.1:8000/api/logout", // Replace with your API endpoint
+                    type: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    success: function (response) {
+                        // Clear the token from localStorage
+                        localStorage.removeItem('token');
+
+                        // Redirect to the login page
+                        window.location.href = "{{ route('persona.auth.login') }}";
+                    },
+                    error: function (xhr) {
+                        alert('Error during logout. Please try again.');
+                    }
+                });
+            });
+        } else {
+            console.error("jQuery is not loaded. Please include jQuery before this script.");
         }
     });
-
-    // Ensure jQuery is available before using it
-    if (typeof $ !== 'undefined') {
-        $('#logout-btn').on('click', function (e) {
-            e.preventDefault();
-
-            // Get the token from localStorage
-            let token = localStorage.getItem('token');
-
-            if (!token) {
-                alert('You are not logged in.');
-                return;
-            }
-
-            // Make API call to logout
-            $.ajax({
-                url: "http://127.0.0.1:8000/api/logout", // Replace with your API endpoint
-                type: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
-                success: function (response) {
-                    // Clear the token from localStorage
-                    localStorage.removeItem('token');
-
-                    // Redirect to the login page
-                    window.location.href = "{{ route('persona.auth.login') }}";
-                },
-                error: function (xhr) {
-                    alert('Error during logout. Please try again.');
-                }
-            });
-        });
-    } else {
-        console.error("jQuery is not loaded. Please include jQuery before this script.");
-    }
-});
-
 </script>
