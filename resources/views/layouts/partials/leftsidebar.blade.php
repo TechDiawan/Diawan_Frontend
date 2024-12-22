@@ -22,20 +22,22 @@
     <div class="p-1">
         <!-- Left sidebar content goes here -->
         <a href="{{ route('persona.myprofile') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.myprofile') ? 'active-menu' : '' }}">
-            <div class="w-12 flex justify-center">
-                <svg class="h-6 w-6 {{ request()->routeIs('persona.myprofile') ? 'text-f7ec03' : 'text-gray-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196zM12 12a3 3 0 100-6 3 3 0 000 6z"></path>
-                </svg>
+            <div class="flex text-center">
+                <i class="mx-1 my-4 fas fa-lg fa-id-badge {{ request()->routeIs('persona.myprofile') ? 'text-f7ec03' : 'text-gray-700' }}"></i>
             </div>
             <span class="ml-2 menu-label {{ request()->routeIs('persona.myprofile') ? 'text-f7ec03' : 'text-gray-700' }}">My Profile</span>
         </a>
         <a href="{{ route('persona.competency') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.competency') ? 'active-menu' : '' }}">
-            <div class="w-12 flex justify-center">
-                <svg class="h-6 w-6 {{ request()->routeIs('persona.competency') ? 'text-f7ec03' : 'text-gray-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 6l-9-5m9 5l9-5m-9 5V8"></path>
-                </svg>
+            <div class="flex text-center">
+                <i class="mx-1 my-4 fas fa-lg fa-user-ninja {{ request()->routeIs('persona.competency') ? 'text-f7ec03' : 'text-gray-700' }}"></i>
             </div>
-            <span class="ml-2 menu-label {{ request()->routeIs('persona.competency') ? 'text-f7ec03' : 'text-gray-700' }}">Competency</span>
+            <span class="ml-2 menu-label {{ request()->routeIs('persona.competency') ? 'text-f7ec03' : 'text-gray-700' }}">My Competency</span>
+        </a>
+        <a href="{{ route('persona.projects') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.projects') ? 'active-menu' : '' }}">
+            <div class="flex text-center">
+                <i class="mx-1 my-4 fas fa-lg fa-shapes {{ request()->routeIs('persona.projects') ? 'text-f7ec03' : 'text-gray-700' }}"></i>
+            </div>
+            <span class="ml-2 menu-label {{ request()->routeIs('persona.projects') ? 'text-f7ec03' : 'text-gray-700' }}">My Projects</span>
         </a>
     </div>
 </aside>

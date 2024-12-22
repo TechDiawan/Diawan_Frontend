@@ -6,6 +6,8 @@ use App\Http\Controllers\Persona\MyProfileController;
 use App\Http\Controllers\Persona\PersonaAuthController;
 use App\Http\Controllers\Persona\CompetencyController;
 use App\Http\Controllers\Persona\ECardController;
+use App\Http\Controllers\Persona\BillingController;
+use App\Http\Controllers\Persona\ProjectsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +32,12 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
 
     // Route for E-Card page
     Route::get('/e-card', [ECardController::class, 'index'])->name('persona.e-card');
+
+    // Route for Billing page
+    Route::get('/billing', [BillingController::class, 'index'])->name('persona.billing');
+
+    // Route for My Projects page
+    Route::get('/projects', [ProjectsController::class, 'index'])->name('persona.projects');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);

@@ -6,9 +6,7 @@
         <div class="flex items-center">
             <!-- Burger Menu -->
             <div class="mr-4 cursor-pointer" id="burgerMenuButton">
-                <svg class="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
+                <i class="fas fa-bars h-6 w-6 text-gray-700"></i>
             </div>
             <img src="{{ asset('images/apps/persona_icon.png') }}" alt="Persona Logo" class="h-8 w-8 rounded-full mr-2">
             <div class="text-xl font-bold">Persona</div>
@@ -35,6 +33,10 @@
                 </svg>
                 <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-red-500"></span>
             </div>
+            <!-- Grip Vertical Icon -->
+            <div class="relative">
+                <i class="fas fa-grip-vertical h-6 w-6 text-gray-700"></i>
+            </div>
             <!-- Avatar Placeholder with Dropdown -->
             <div class="relative">
                 <!-- <img src="{{ asset('images/placeholder_avatar.png') }}" alt="User Avatar" class="h-8 w-8 rounded-full"> -->
@@ -45,6 +47,7 @@
                 <!-- Dropdown Menu -->
                 <div id="avatarDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5">
                     <a href="{{ route('persona.myprofile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
+                    <a href="{{ route('persona.billing') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Billing</a>
                     <button id="logout-btn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
                 </div>
             </div>

@@ -23,6 +23,9 @@
                             <a href="#" title="Edit" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer">
                                 <i class="fas fa-pencil-alt h-6 w-6"></i>
                             </a>
+                            <a href="#" title="QR Code" class="text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out cursor-pointer">
+                                <i class="fas fa-qrcode h-6 w-6"></i>
+                            </a>
                         </div>
                         <div class="relative flex justify-center mb-4">
                             <img src="{{ asset('images/profile_pics/default.jpg') }}" alt="User Avatar" class="h-36 w-36 rounded-full transition duration-300 ease-in-out">
@@ -58,6 +61,9 @@
                             <li class="mr-2">
                                 <a href="#journey" class="inline-block py-2 px-4 text-gray-600 hover:text-blue-600 hover:border-blue-600">Journey</a>
                             </li>
+                            <li class="mr-2">
+                                <a href="#competency" class="inline-block py-2 px-4 text-gray-600 hover:text-blue-600 hover:border-blue-600">Competency</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- Tabs Content -->
@@ -72,6 +78,9 @@
                     </div>
                     <div id="journey" class="tab-content hidden">
                         <p>Journey content goes here.</p>
+                    </div>
+                    <div id="competency" class="tab-content hidden">
+                        <p>Competency content goes here.</p>
                     </div>
                 </div>
             </div>
