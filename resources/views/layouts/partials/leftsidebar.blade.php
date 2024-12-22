@@ -21,19 +21,19 @@
 <aside id="leftSidebar" class="bg-gray-300 fixed top-0 left-0 bottom-0 pt-16 transform transition-all duration-300 ease-in-out collapsed">
     <div class="p-1">
         <!-- Left sidebar content goes here -->
-        <a href="{{ route('persona.myprofile') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.myprofile') ? 'active-menu' : '' }}">
+        <a title="My profile" href="{{ route('persona.myprofile') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.myprofile') ? 'active-menu' : '' }}">
             <div class="flex text-center">
                 <i class="mx-1 my-4 fas fa-lg fa-id-badge {{ request()->routeIs('persona.myprofile') ? 'text-f7ec03' : 'text-gray-700' }}"></i>
             </div>
             <span class="ml-2 menu-label {{ request()->routeIs('persona.myprofile') ? 'text-f7ec03' : 'text-gray-700' }}">My Profile</span>
         </a>
-        <a href="{{ route('persona.competency') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.competency') ? 'active-menu' : '' }}">
+        <a title="My competency" href="{{ route('persona.competency') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.competency') ? 'active-menu' : '' }}">
             <div class="flex text-center">
                 <i class="mx-1 my-4 fas fa-lg fa-user-ninja {{ request()->routeIs('persona.competency') ? 'text-f7ec03' : 'text-gray-700' }}"></i>
             </div>
             <span class="ml-2 menu-label {{ request()->routeIs('persona.competency') ? 'text-f7ec03' : 'text-gray-700' }}">My Competency</span>
         </a>
-        <a href="{{ route('persona.projects') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.projects') ? 'active-menu' : '' }}">
+        <a title="My project" href="{{ route('persona.projects') }}" class="flex items-center p-2 hover:bg-gray-200 rounded-md mt-2 {{ request()->routeIs('persona.projects') ? 'active-menu' : '' }}">
             <div class="flex text-center">
                 <i class="mx-1 my-4 fas fa-lg fa-shapes {{ request()->routeIs('persona.projects') ? 'text-f7ec03' : 'text-gray-700' }}"></i>
             </div>
