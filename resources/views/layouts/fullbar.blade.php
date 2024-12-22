@@ -17,7 +17,13 @@
 
     <div class="flex pt-16">
         <!-- Left Sidebar -->
-        @includeIf('layouts.partials.leftsidebar')
+        @if (Request::is('persona*'))
+            @includeIf('persona.partials.sidebar', ['menuItems' => app('App\Http\Controllers\Persona\PersonaSidebarController')->getMenuItems()->getData()['menuItems']])
+        @elseif (Request::is('testlab*'))
+            @includeIf('testlab.partials.sidebar', ['menuItems' => app('App\Http\Controllers\TestLab\TestLabSidebarController')->getMenuItems()->getData()['menuItems']])
+        @else
+            @includeIf('layouts.partials.default_leftsidebar')
+        @endif
 
         <!-- Main Content -->
         <div id="mainContent" class="flex-1 flex flex-col min-h-screen bg-gray-100 bg-opacity-10 transition-all duration-300 ease-in-out">

@@ -9,6 +9,9 @@ use App\Http\Controllers\Persona\ECardController;
 use App\Http\Controllers\Persona\BillingController;
 use App\Http\Controllers\Persona\ProjectsController;
 use App\Http\Controllers\Persona\AccountController;
+use App\Http\Controllers\Persona\PersonaSidebarController;
+use App\Http\Controllers\TestLab\TesLabSidebarController;
+use App\Http\Controllers\TestLab\TestLabDashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +27,9 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
     Route::get('/auth/forgotpass', 'PersonaAuthController@forgotpass')->name('persona.auth.forgotpass');
     Route::get('/auth/resetpass', 'PersonaAuthController@resetpass')->name('persona.auth.resetpass');
     Route::post('/auth/resetpass', 'PersonaAuthController@handleResetPassword')->name('persona.auth.handleResetPassword');
-
+    
+    Route::get('/sidebar', [PersonaSidebarController::class, 'getMenuItems'])->name('persona.sidebar');
+    
     // Route for My Profile page
     Route::get('/myprofile', [MyProfileController::class, 'index'])->name('persona.myprofile');
 
@@ -42,6 +47,12 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
 
     // Route for Account page
     Route::get('/account', [AccountController::class, 'index'])->name('persona.account');
+});
+
+// Routes for TestLab
+Route::prefix('testlab')->group(function () {
+    Route::get('/dashboard', [TestlabDashboardController::class, 'index'])->name('testlab.dashboard');
+    Route::get('/sidebar', [TestlabSidebarController::class, 'getMenuItems'])->name('testlab.sidebar');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);
