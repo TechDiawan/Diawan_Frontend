@@ -35,7 +35,9 @@
             </div>
             <!-- Grip Vertical Icon -->
             <div class="relative">
-                <i class="fas fa-grip-vertical h-6 w-6 text-gray-700"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h6v6H3V3zm0 12h6v6H3v-6zm12-12h6v6h-6V3zm0 12h6v6h-6v-6z" />
+                </svg>
             </div>
             <!-- Avatar Placeholder with Dropdown -->
             <div class="relative">
@@ -46,7 +48,8 @@
                 </div>
                 <!-- Dropdown Menu -->
                 <div id="avatarDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5">
-                    <a href="{{ route('persona.myprofile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
+                    <a href="{{ route('persona.myprofile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                    <a href="{{ route('persona.account') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
                     <a href="{{ route('persona.billing') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Billing</a>
                     <button id="logout-btn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
                 </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Persona\CompetencyController;
 use App\Http\Controllers\Persona\ECardController;
 use App\Http\Controllers\Persona\BillingController;
 use App\Http\Controllers\Persona\ProjectsController;
+use App\Http\Controllers\Persona\AccountController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +39,9 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
 
     // Route for My Projects page
     Route::get('/projects', [ProjectsController::class, 'index'])->name('persona.projects');
+
+    // Route for Account page
+    Route::get('/account', [AccountController::class, 'index'])->name('persona.account');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);
