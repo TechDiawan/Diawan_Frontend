@@ -5,8 +5,8 @@
         <!-- Left Section -->
         <div class="flex items-center">
             <!-- Burger Menu -->
-            <div class="mr-4 cursor-pointer" id="burgerMenuButton">
-                <i class="fas fa-bars h-6 w-6 text-gray-700"></i>
+            <div class="mt-2 mr-4 cursor-pointer" id="burgerMenuButton">
+                <i class="fas fa-xl fa-bars h-6 w-6 text-gray-700"></i>
             </div>
             <img src="{{ asset('images/apps/persona_icon.png') }}" alt="Persona Logo" class="h-8 w-8 rounded-full mr-2">
             <div class="text-xl font-bold">Persona</div>
