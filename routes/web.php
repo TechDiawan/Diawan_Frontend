@@ -32,6 +32,7 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
     
     // Route for My Profile page
     Route::get('/myprofile', [MyProfileController::class, 'index'])->name('persona.myprofile');
+    Route::post('/myprofile', [MyProfileController::class, 'update'])->name('persona.update-profile');
 
     // Route for Competency page
     Route::get('/competency', [CompetencyController::class, 'index'])->name('persona.competency');

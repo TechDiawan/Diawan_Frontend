@@ -68,13 +68,181 @@
                     </div>
                     <!-- Tabs Content -->
                     <div id="general" class="tab-content">
-                        <p>General content goes here.</p>
+                        <form action="{{ route('persona.update-profile') }}" method="POST">
+                            @csrf
+                            <div class="flex flex-wrap -mx-4">
+                                <div class="w-full md:w-1/2 px-4">
+                                    <div class="mb-4">
+                                        <label for="full_name" class="block text-gray-700">Full Name</label>
+                                        <input type="text" id="full_name" name="full_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="{{ old('full_name', Auth::user()->full_name ?? '') }}">
+                                        @error('full_name')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="nick_name" class="block text-gray-700">Nick Name</label>
+                                        <input type="text" id="nick_name" name="nick_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="{{ old('nick_name', Auth::user()->nick_name ?? '') }}">
+                                        @error('nick_name')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="birth_date" class="block text-gray-700">Birth Date</label>
+                                        <input type="date" id="birth_date" name="birth_date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="{{ old('birth_date', Auth::user()->birth_date ?? '') }}">
+                                        @error('birth_date')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="birth_place" class="block text-gray-700">Birth Place</label>
+                                        <input type="text" id="birth_place" name="birth_place" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="{{ old('birth_place', Auth::user()->birth_place ?? '') }}">
+                                        @error('birth_place')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="w-full md:w-1/2 px-4">
+                                    <div class="mb-4">
+                                        <label for="gender" class="block text-gray-700">Gender</label>
+                                        <select id="gender" name="gender" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                            @foreach($genders as $gender)
+                                                <option value="{{ $gender }}" {{ old('gender', Auth::user()->gender ?? '') == $gender ? 'selected' : '' }}>{{ ucfirst($gender) }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('gender')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="religion" class="block text-gray-700">Religion</label>
+                                        <select id="religion" name="religion" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                            @foreach($religions as $religion)
+                                                <option value="{{ $religion }}" {{ old('religion', Auth::user()->religion ?? '') == $religion ? 'selected' : '' }}>{{ ucfirst($religion) }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('religion')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="marital_status" class="block text-gray-700">Marital Status</label>
+                                        <select id="marital_status" name="marital_status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                            @foreach($marital_statuses as $status)
+                                                <option value="{{ $status }}" {{ old('marital_status', Auth::user()->marital_status ?? '') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('marital_status')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="w-full px-4 text-right">
+                                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div id="education" class="tab-content hidden">
-                        <p>Education content goes here.</p>
+                        <div class="flex justify-end mb-4">
+                            <a href="#" title="Add New" class="text-green-600 hover:text-green-800 transition duration-300 ease-in-out cursor-pointer">
+                                <i class="fas fa-xl fa-plus-circle" style="width: 20px; height: 20px;"></i>
+                                <span class="ml-2"> add new</span>
+                            </a>
+                        </div>
+                        <ol class="relative border-l border-gray-200 dark:border-gray-700">
+                            @forelse($educations ?? [] as $education)
+                                <li class="mb-10 ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-900">
+                                        <i class="fas fa-graduation-cap text-gray-100"></i>
+                                    </span>
+                                    <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 relative">
+                                        <div class="absolute top-2 right-2 flex space-x-2">
+                                            <a href="#" title="Edit" class="text-yellow-500 hover:text-yellow-700 transition duration-300 ease-in-out cursor-pointer">
+                                                <i class="fas fa-pencil-alt h-5 w-5"></i>
+                                            </a>
+                                            <a href="#" title="Delete" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out cursor-pointer">
+                                                <i class="fas fa-trash-alt h-5 w-5"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ $education->title }}</div>
+                                        <div class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $education->institution }}</div>
+                                        <div class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ $education->start_year }} to {{ $education->end_year }} ({{ $education->type }})</div>
+                                    </div>
+                                </li>
+                            @empty
+                                @foreach($sampleEducations ?? [] as $education)
+                                    <li class="mb-10 ml-6">
+                                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-900">
+                                            <i class="fas fa-graduation-cap text-gray-100"></i>
+                                        </span>
+                                        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 relative">
+                                            <div class="absolute top-2 right-2 flex space-x-2">
+                                                <a href="#" title="Edit" class="text-yellow-500 hover:text-yellow-700 transition duration-300 ease-in-out cursor-pointer">
+                                                    <i class="fas fa-pencil-alt h-5 w-5"></i>
+                                                </a>
+                                                <a href="#" title="Delete" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out cursor-pointer">
+                                                    <i class="fas fa-trash-alt h-5 w-5"></i>
+                                                </a>
+                                            </div>
+                                            <div class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ $education['title'] }}</div>
+                                            <div class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $education['institution'] }}</div>
+                                            <div class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ $education['start_year'] }} to {{ $education['end_year'] }} ({{ $education['type'] }})</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endforelse
+                        </ol>
                     </div>
                     <div id="work-experience" class="tab-content hidden">
-                        <p>Work experience content goes here.</p>
+                        <div class="flex justify-end mb-4">
+                            <a href="#" title="Add New" class="text-green-600 hover:text-green-800 transition duration-300 ease-in-out cursor-pointer">
+                                <i class="fas fa-plus-circle" style="width: 20px; height: 20px;"></i>
+                                <span class="ml-2"> add new</span>
+                            </a>
+                        </div>
+                        <ol class="relative border-l border-gray-200 dark:border-gray-700">
+                            @forelse($workExperiences ?? [] as $workExperience)
+                                <li class="mb-10 ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-900">
+                                        <i class="fas fa-briefcase text-gray-100"></i>
+                                    </span>
+                                    <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 relative">
+                                        <div class="absolute top-2 right-2 flex space-x-2">
+                                            <a href="#" title="Edit" class="text-yellow-500 hover:text-yellow-700 transition duration-300 ease-in-out cursor-pointer">
+                                                <i class="fas fa-pencil-alt h-5 w-5"></i>
+                                            </a>
+                                            <a href="#" title="Delete" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out cursor-pointer">
+                                                <i class="fas fa-trash-alt h-5 w-5"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ $workExperience->position }}</div>
+                                        <div class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $workExperience->company }}</div>
+                                        <div class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ $workExperience->start_year }} to {{ $workExperience->end_year }} ({{ $workExperience->type }})</div>
+                                    </div>
+                                </li>
+                            @empty
+                                @foreach($sampleWorkExperiences ?? [] as $workExperience)
+                                    <li class="mb-10 ml-6">
+                                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-900">
+                                            <i class="fas fa-briefcase text-gray-100"></i>
+                                        </span>
+                                        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 relative">
+                                            <div class="absolute top-2 right-2 flex space-x-2">
+                                                <a href="#" title="Edit" class="text-yellow-500 hover:text-yellow-700 transition duration-300 ease-in-out cursor-pointer">
+                                                    <i class="fas fa-pencil-alt h-5 w-5"></i>
+                                                </a>
+                                                <a href="#" title="Delete" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out cursor-pointer">
+                                                    <i class="fas fa-trash-alt h-5 w-5"></i>
+                                                </a>
+                                            </div>
+                                            <div class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ $workExperience['position'] }}</div>
+                                            <div class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $workExperience['company'] }}</div>
+                                            <div class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ $workExperience['start_year'] }} to {{ $workExperience['end_year'] }} ({{ $workExperience['type'] }})</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endforelse
+                        </ol>
                     </div>
                     <div id="journey" class="tab-content hidden">
                         <p>Journey content goes here.</p>

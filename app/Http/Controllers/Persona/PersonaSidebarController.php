@@ -10,10 +10,12 @@ class PersonaSidebarController extends Controller
     public function getMenuItems()
     {
         $menuItems = [
-            ['name' => 'Dashboard', 'route' => 'persona.home'],
-            ['name' => 'Profile', 'route' => 'persona.myprofile'],
-            ['name' => 'Competency', 'route' => 'persona.competency'],
+            ['name' => 'My Profile', 'route' => 'persona.myprofile'],
+            ['name' => 'My Competency', 'route' => 'persona.competency'],
+            ['name' => 'My Projects', 'route' => 'persona.projects'],
             ['name' => 'E-Card', 'route' => 'persona.e-card'],
+            ['name' => 'Billing', 'route' => 'persona.billing'],
+            ['name' => 'Account', 'route' => 'persona.account'],
             // Add more Persona menu items here
         ];
 
