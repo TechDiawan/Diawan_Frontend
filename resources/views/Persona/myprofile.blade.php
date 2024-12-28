@@ -286,8 +286,9 @@
                             @forelse($competencies ?? $sampleCompetencies ?? [] as $competency)
                                 <div class="w-full md:w-1/2 px-4 mb-4">
                                     <div class="bg-white p-4 rounded-lg shadow-md relative">
-                                        <div class="absolute top-2 right-2 text-gray-600">
-                                            <span class="text-lg font-semibold">{{ number_format($competency->rating ?? $competency['rating'], 1) }}</span>
+                                        <div class="absolute top-2 right-2 text-gray-600 flex items-center">
+                                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                            <span class="text-xl font-semibold">{{ number_format($competency->rating ?? $competency['rating'], 1) }}</span>
                                         </div>
                                         <h3 class="text-lg font-bold">{{ $competency->title ?? $competency['title'] }}</h3>
                                         <p class="text-gray-600">{{ $competency->subtitle ?? $competency['subtitle'] }}</p>
