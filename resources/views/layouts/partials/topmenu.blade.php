@@ -5,6 +5,18 @@
     if (empty($apps)) {
         $apps = [
             [
+                'name' => 'Persona',
+                'url' => route('persona.myprofile'),
+                'icon_path' => 'images/apps/persona_icon.png',
+                'color' => 'blue'
+            ],
+            [
+                'name' => 'TestLab',
+                'url' => route('testlab.dashboard'),
+                'icon_path' => 'images/apps/testlab_icon.png',
+                'color' => 'green'
+            ],
+            [
                 'name' => 'Example App 1',
                 'url' => '#',
                 'icon_path' => 'images/apps/example1.png',
@@ -25,10 +37,6 @@
     <div class="px-4 py-2 flex justify-between items-center relative">
         <!-- Left Section -->
         <div class="flex items-center">
-            <!-- Burger Menu -->
-            <div class="mt-2 mr-4 cursor-pointer" id="burgerMenuButton">
-                <i class="fas fa-xl fa-bars h-6 w-6 text-gray-700"></i>
-            </div>
             @if (Request::is('persona*'))
                 <img src="{{ asset('images/apps/persona_icon.png') }}" alt="Persona Logo" class="h-8 w-8 rounded-full mr-2">
                 <div class="text-xl font-bold">Persona</div>
@@ -167,25 +175,8 @@
     document.addEventListener('DOMContentLoaded', function () {
         var avatarDropdownButton = document.getElementById('avatarDropdownButton');
         var avatarDropdownMenu = document.getElementById('avatarDropdownMenu');
-        var burgerMenuButton = document.getElementById('burgerMenuButton');
-        var leftSidebar = document.getElementById('leftSidebar');
-        var mainContent = document.getElementById('mainContent');
         var appLauncherButton = document.getElementById('appLauncherButton');
         var appLauncherModal = document.getElementById('appLauncherModal');
-
-        burgerMenuButton.addEventListener('click', function () {
-            var isCollapsed = leftSidebar.classList.contains('collapsed');
-            if (isCollapsed) {
-                leftSidebar.classList.remove('collapsed');
-                leftSidebar.classList.add('expanded');
-                mainContent.style.marginLeft = 'calc(16.6667% + 50px)';
-            } else {
-                mainContent.style.marginLeft = '50px';
-                leftSidebar.classList.remove('expanded');
-                leftSidebar.classList.add('collapsed');
-                mainContent.style.marginLeft = '50px';
-            }
-        });
 
         avatarDropdownButton.addEventListener('click', function () {
             avatarDropdownMenu.classList.toggle('hidden');
