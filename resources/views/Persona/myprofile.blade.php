@@ -245,10 +245,58 @@
                         </ol>
                     </div>
                     <div id="journey" class="tab-content hidden">
-                        <p>Journey content goes here.</p>
+                        <div class="flex justify-end mb-4">
+                            <a href="#" title="Add New" class="text-green-600 hover:text-green-800 transition duration-300 ease-in-out cursor-pointer">
+                                <i class="fas fa-plus-circle" style="width: 20px; height: 20px;"></i>
+                                <span class="ml-2"> add new</span>
+                            </a>
+                        </div>
+                        <ol class="relative border-l border-gray-200 dark:border-gray-700">
+                            @forelse($journeys ?? $sampleJourneys ?? [] as $journey)
+                                <li class="mb-10 ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-gray-900">
+                                        <i class="fas fa-map-marker-alt text-gray-100"></i>
+                                    </span>
+                                    <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600 relative">
+                                        <div class="absolute top-2 right-2 flex space-x-2">
+                                            <a href="#" title="Edit" class="text-yellow-500 hover:text-yellow-700 transition duration-300 ease-in-out cursor-pointer">
+                                                <i class="fas fa-pencil-alt h-5 w-5"></i>
+                                            </a>
+                                            <a href="#" title="Delete" class="text-red-500 hover:text-red-700 transition duration-300 ease-in-out cursor-pointer">
+                                                <i class="fas fa-trash-alt h-5 w-5"></i>
+                                            </a>
+                                        </div>
+                                        <div class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ $journey->title ?? $journey['title'] }}</div>
+                                        <div class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $journey->location ?? $journey['location'] }}</div>
+                                        <div class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ $journey->start_month_year ?? $journey['start_month_year'] }} to {{ $journey->end_month_year ?? $journey['end_month_year'] }}</div>
+                                    </div>
+                                </li>
+                            @empty
+                                <p class="text-gray-600">No journeys available.</p>
+                            @endforelse
+                        </ol>
                     </div>
                     <div id="competency" class="tab-content hidden">
-                        <p>Competency content goes here.</p>
+                        <div class="mb-4 text-center">
+                            <a href="{{ route('testlab.skillclaim') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out">
+                                Claim Your Skills by Taking a Test
+                            </a>
+                        </div>
+                        <div class="flex flex-wrap -mx-4">
+                            @forelse($competencies ?? $sampleCompetencies ?? [] as $competency)
+                                <div class="w-full md:w-1/2 px-4 mb-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-md relative">
+                                        <div class="absolute top-2 right-2 text-gray-600">
+                                            <span class="text-lg font-semibold">{{ number_format($competency->rating ?? $competency['rating'], 1) }}</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold">{{ $competency->title ?? $competency['title'] }}</h3>
+                                        <p class="text-gray-600">{{ $competency->subtitle ?? $competency['subtitle'] }}</p>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-gray-600">No competencies available.</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
@@ -290,6 +338,39 @@
                     }
                 });
             }
+
+            const sampleJourneys = [
+                {
+                    title: 'Backpacking through Europe',
+                    location: 'Europe',
+                    start_month_year: 'June 2019',
+                    end_month_year: 'August 2019'
+                },
+                {
+                    title: 'Volunteer Work in Africa',
+                    location: 'Kenya',
+                    start_month_year: 'January 2020',
+                    end_month_year: 'March 2020'
+                }
+            ];
+
+            const sampleCompetencies = [
+                {
+                    title: 'JavaScript',
+                    subtitle: 'Programming Language',
+                    rating: 4.5
+                },
+                {
+                    title: 'Project Management',
+                    subtitle: 'Management Skill',
+                    rating: 4.0
+                },
+                {
+                    title: 'Graphic Design',
+                    subtitle: 'Creative Skill',
+                    rating: 3.8
+                }
+            ];
         });
     </script>
 @endsection

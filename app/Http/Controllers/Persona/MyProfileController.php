@@ -52,8 +52,40 @@ class MyProfileController extends Controller
                 'company' => 'Startup Inc.'
             ]
         ];
+        $sampleJourneys = [
+            [
+                'title' => 'Backpacking through Europe',
+                'location' => 'Europe',
+                'start_month_year' => 'June 2019',
+                'end_month_year' => 'August 2019'
+            ],
+            [
+                'title' => 'Volunteer Work in Africa',
+                'location' => 'Kenya',
+                'start_month_year' => 'January 2020',
+                'end_month_year' => 'March 2020'
+            ]
+        ];
 
-        return view('persona.myprofile', compact('genders', 'religions', 'marital_statuses', 'educations', 'sampleEducations', 'workExperiences', 'sampleWorkExperiences'));
+        $sampleCompetencies = [
+            [
+                'title' => 'JavaScript',
+                'subtitle' => 'Programming Language',
+                'rating' => 4.5
+            ],
+            [
+                'title' => 'Project Management',
+                'subtitle' => 'Management Skill',
+                'rating' => 4.0
+            ],
+            [
+                'title' => 'Graphic Design',
+                'subtitle' => 'Creative Skill',
+                'rating' => 3.8
+            ]
+        ];
+
+        return view('persona.myprofile', compact('genders', 'religions', 'marital_statuses', 'educations', 'sampleEducations', 'workExperiences', 'sampleWorkExperiences', 'sampleJourneys', 'sampleCompetencies'));
     }
 
     public function update(Request $request)

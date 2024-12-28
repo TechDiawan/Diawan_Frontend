@@ -54,6 +54,9 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
 Route::prefix('testlab')->group(function () {
     Route::get('/dashboard', [TestlabDashboardController::class, 'index'])->name('testlab.dashboard');
     Route::get('/sidebar', [TestlabSidebarController::class, 'getMenuItems'])->name('testlab.sidebar');
+    Route::get('/skillclaim', [TestLabSkillClaimController::class, 'index'])->name('testlab.skillclaim');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);
+
+Route::get('/appssample', [SampleAppsController::class, 'index'])->name('apps.index');
