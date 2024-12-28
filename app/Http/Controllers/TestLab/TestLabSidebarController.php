@@ -10,9 +10,16 @@ class TestLabSidebarController extends Controller
     public function getMenuItems()
     {
         $menuItems = [
-            ['name' => 'Dashboard', 'route' => 'testlab.dashboard'],
-            //['name' => 'Question Bank', 'route' => 'testlab.questionbank'],
-            // Add more TestLab menu items here
+            'Talent' => [
+                ['name' => 'Dashboard', 'route' => 'testlab.dashboard'],
+                ['name' => 'Skill Claim', 'route' => 'testlab.skillclaim'],
+                ['name' => 'My Skill List', 'route' => 'testlab.myskills'],
+            ],
+            'Admin' => [
+                ['name' => 'Manage Skill Type', 'route' => 'admin.manage-skill-type'],
+                ['name' => 'Manage Skill', 'route' => 'admin.manage-skill'],
+                ['name' => 'Question Bank', 'route' => 'admin.question-bank'],
+            ],
         ];
 
         return view('testlab.partials.sidebar', compact('menuItems'));

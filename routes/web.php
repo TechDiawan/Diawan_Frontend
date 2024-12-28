@@ -12,6 +12,9 @@ use App\Http\Controllers\Persona\AccountController;
 use App\Http\Controllers\Persona\PersonaSidebarController;
 use App\Http\Controllers\TestLab\TesLabSidebarController;
 use App\Http\Controllers\TestLab\TestLabDashboardController;
+use App\Http\Controllers\TestLab\TestLabSkillClaimController;
+use App\Http\Controllers\Admin\ManageSkillTypeController;
+use App\Http\Controllers\Admin\ManageSkillController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +58,15 @@ Route::prefix('testlab')->group(function () {
     Route::get('/dashboard', [TestlabDashboardController::class, 'index'])->name('testlab.dashboard');
     Route::get('/sidebar', [TestlabSidebarController::class, 'getMenuItems'])->name('testlab.sidebar');
     Route::get('/skillclaim', [TestLabSkillClaimController::class, 'index'])->name('testlab.skillclaim');
+    Route::get('/myskills', [TestLabSkillClaimController::class, 'mySkills'])->name('testlab.myskills');
+
+    // Routes for Admin under TestLab
+    Route::prefix('admin')->group(function () {
+        Route::get('/manage-skill-type', [ManageSkillTypeController::class, 'index'])->name('admin.manage-skill-type');
+        Route::get('/manage-skill', [ManageSkillController::class, 'index'])->name('admin.manage-skill');
+        Route::get('/question-bank', [TestlabSidebarController::class, 'questionBank'])->name('admin.question-bank');
+        // Add more admin routes here
+    });
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);
