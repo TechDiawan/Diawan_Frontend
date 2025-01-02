@@ -15,6 +15,7 @@ use App\Http\Controllers\TestLab\TestLabDashboardController;
 use App\Http\Controllers\TestLab\TestLabSkillClaimController;
 use App\Http\Controllers\Admin\ManageSkillTypeController;
 use App\Http\Controllers\Admin\ManageSkillController;
+use App\Http\Controllers\Persona\SkillClaimController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,13 +52,15 @@ Route::prefix('persona')->namespace('App\Http\Controllers\Persona')->group(funct
 
     // Route for Account page
     Route::get('/account', [AccountController::class, 'index'])->name('persona.account');
+
+    // Route for Skill Claim page
+    Route::get('/skillclaim', [SkillClaimController::class, 'index'])->name('persona.skillclaim');
 });
 
 // Routes for TestLab
 Route::prefix('testlab')->group(function () {
     Route::get('/dashboard', [TestlabDashboardController::class, 'index'])->name('testlab.dashboard');
     Route::get('/sidebar', [TestlabSidebarController::class, 'getMenuItems'])->name('testlab.sidebar');
-    Route::get('/skillclaim', [TestLabSkillClaimController::class, 'index'])->name('testlab.skillclaim');
     Route::get('/myskills', [TestLabSkillClaimController::class, 'mySkills'])->name('testlab.myskills');
 
     // Routes for Admin under TestLab

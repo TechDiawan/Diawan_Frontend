@@ -278,7 +278,7 @@
                     </div>
                     <div id="competency" class="tab-content hidden">
                         <div class="mb-4 text-center">
-                            <a href="{{ route('testlab.skillclaim') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out">
+                            <a href="{{ route('persona.skillclaim') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out">
                                 Claim Your Skills by Taking a Test
                             </a>
                         </div>

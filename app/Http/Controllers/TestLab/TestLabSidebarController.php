@@ -12,7 +12,6 @@ class TestLabSidebarController extends Controller
         $menuItems = [
             'Talent' => [
                 ['name' => 'Dashboard', 'route' => 'testlab.dashboard'],
-                ['name' => 'Skill Claim', 'route' => 'testlab.skillclaim'],
                 ['name' => 'My Skill List', 'route' => 'testlab.myskills'],
             ],
             'Admin' => [
