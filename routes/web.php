@@ -68,8 +68,15 @@ Route::prefix('testlab')->group(function () {
         Route::get('/manage-skill-type', [ManageSkillTypeController::class, 'index'])->name('admin.manage-skill-type');
         Route::get('/manage-skill', [ManageSkillController::class, 'index'])->name('admin.manage-skill');
         Route::get('/question-bank', [TestlabSidebarController::class, 'questionBank'])->name('admin.question-bank');
+        Route::get('/participants', [TestlabSidebarController::class, 'participants'])->name('admin.participants');
+        Route::get('/skillheatmap', [TestlabSidebarController::class, 'skillheatmap'])->name('admin.skillheatmap');
         // Add more admin routes here
     });
+});
+
+// Routes for Talents
+Route::prefix('talent')->group(function () {
+    Route::get('/dashboard', [TalentDashboardController::class, 'index'])->name('talent.dashboard');
 });
 
 Route::get('/notifications/{type?}', [NotificationController::class, 'index']);

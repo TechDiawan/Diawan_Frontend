@@ -17,18 +17,12 @@
                 'color' => 'green'
             ],
             [
-                'name' => 'Example App 1',
-                'url' => '#',
-                'icon_path' => 'images/apps/example1.png',
-                'color' => 'blue'
-            ],
-            [
-                'name' => 'Example App 2',
-                'url' => '#',
-                'icon_path' => 'images/apps/example2.png',
+                'name' => 'Talent',
+                'url' => route('talent.dashboard'),
+                'icon_path' => 'images/apps/talent_icon.png',
                 'color' => 'green'
             ],
-            // Add more sample apps as needed...
+                // Add more sample apps as needed...
         ];
     }
 @endphp
