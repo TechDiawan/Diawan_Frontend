@@ -17,7 +17,25 @@
                 'color' => 'green'
             ],
             [
-                'name' => 'Talent',
+                'name' => 'Kerja',
+                'url' => route('talent.dashboard'),
+                'icon_path' => 'images/apps/talent_icon.png',
+                'color' => 'green'
+            ],
+            [
+                'name' => 'Karya',
+                'url' => route('talent.dashboard'),
+                'icon_path' => 'images/apps/talent_icon.png',
+                'color' => 'green'
+            ],
+            [
+                'name' => 'Kelola',
+                'url' => route('talent.dashboard'),
+                'icon_path' => 'images/apps/talent_icon.png',
+                'color' => 'green'
+            ],
+            [
+                'name' => 'Kendali',
                 'url' => route('talent.dashboard'),
                 'icon_path' => 'images/apps/talent_icon.png',
                 'color' => 'green'
